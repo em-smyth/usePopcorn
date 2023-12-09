@@ -73,11 +73,21 @@ export default function App() {
         <Box>
           <MovieList movies={movies} />
         </Box>
-
         <Box>
           <WatchedSummary watched={watched} />
           <WatchedMoviesList watched={watched} />
         </Box>
+
+        {/* Alternative method of displaying: */}
+        {/* <Box element={<MovieList movies={movies} />} />
+        <Box
+          element={
+            <>
+              <WatchedSummary watched={watched} />
+              <WatchedMoviesList watched={watched} />
+            </>
+          }
+        /> */}
       </Main>
     </>
   );
