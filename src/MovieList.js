@@ -7,7 +7,6 @@ export default function MovieList({ movies, onSelectMovie }) {
     </ul>
   );
 }
-
 function Movie({ movie, onSelectMovie }) {
   return (
     <li onClick={() => onSelectMovie(movie.imdbID)}>

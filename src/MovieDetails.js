@@ -6,17 +6,18 @@ import Loader from "./Loader";
 export default function MovieDetails({
   selectedId,
   onCloseMovie,
-  KEY,
   onAddWatched,
   watched,
 }) {
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState("");
+
   const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
   const watchedUserRating = watched.find(
     (movie) => movie.imdbID === selectedId
   )?.userRating;
+  const KEY = "a5765122";
 
   const {
     Title: title,
@@ -48,6 +49,22 @@ export default function MovieDetails({
 
   useEffect(
     function () {
+      function callback(e) {
+        if (e.code === "Escape") {
+          onCloseMovie();
+        }
+      }
+      document.addEventListener("keydown", callback);
+
+      return function () {
+        document.removeEventListener("keydown", callback);
+      };
+    },
+    [onCloseMovie]
+  );
+
+  useEffect(
+    function () {
       async function getMovieDetails() {
         setIsLoading(true);
         const res = await fetch(
@@ -59,7 +76,7 @@ export default function MovieDetails({
       }
       getMovieDetails();
     },
-    [selectedId, KEY]
+    [selectedId]
   );
 
   useEffect(
@@ -72,22 +89,6 @@ export default function MovieDetails({
       };
     },
     [title]
-  );
-
-  useEffect(
-    function () {
-      function callback(e) {
-        if (e.code === "Escape") {
-          onCloseMovie();
-        }
-      }
-      document.addEventListener("keydown", callback);
-
-      return function () {
-        document.addEventListener("keydown", callback);
-      };
-    },
-    [onCloseMovie]
   );
 
   return (
