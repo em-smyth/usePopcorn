@@ -1,5 +1,4 @@
-import { useRef } from "react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Search({ query, setQuery }) {
   const inputEl = useRef(null);
