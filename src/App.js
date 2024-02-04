@@ -1,5 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
 import { useMovies } from "./useMovies.js";
+import { useLocalStorageState } from "./useLocalStorageState.js";
+
 import NavBar from "./NavBar";
 import Main from "./Main";
 import MovieList from "./MovieList.js";
@@ -11,7 +14,6 @@ import WatchedMoviesList from "./WatchedMoviesList.js";
 import Loader from "./Loader.js";
 import ErrorMessage from "./ErrorMessage.js";
 import MovieDetails from "./MovieDetails.js";
-import { useLocalStorageState } from "./useLocalStorageState.js";
 
 export const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
